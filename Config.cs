@@ -51,7 +51,21 @@ public static class Config
             {
                 SubjectId = "1",
                 Username = "alice",
-                Password = "password"
+                Password = "password",
+                Claims = new List<System.Security.Claims.Claim>
+                {
+                    new System.Security.Claims.Claim("role", "Admin")
+                }
+            },
+            new TestUser
+            {
+                SubjectId = "2",
+                Username = "bob",
+                Password = "password",
+                Claims = new List<System.Security.Claims.Claim>
+                {
+                    new System.Security.Claims.Claim("role", "User")
+                }
             }
         };
     }

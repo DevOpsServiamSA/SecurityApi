@@ -1,17 +1,17 @@
-using Duende.IdentityServer;
-
 var builder = WebApplication.CreateBuilder(args);
 
-// Configure IdentityServer
-builder.Services.AddIdentityServer()
-    .AddDeveloperSigningCredential() // Not for production
-    .AddInMemoryClients(Config.GetClients())
-    .AddInMemoryApiScopes(Config.GetApiScopes())
-    .AddInMemoryApiResources(Config.GetApiResources())
-    .AddInMemoryIdentityResources(Config.GetIdentityResources())
-    .AddTestUsers(Config.GetUsers());
+// Add services to the container.
+
+builder.Services.AddControllers();
 
 var app = builder.Build();
 
-app.UseIdentityServer();
+// Configure the HTTP request pipeline.
+
+app.UseHttpsRedirection();
+
+app.UseAuthorization();
+
+app.MapControllers();
+
 app.Run();

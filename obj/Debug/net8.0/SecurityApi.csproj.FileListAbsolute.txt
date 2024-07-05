@@ -80,3 +80,4 @@ C:\Users\jleon\Desktop\Workspace\InkaCrops\Web\GlobalPortal\SecurityApi\obj\Debu
 C:\Users\jleon\Desktop\Workspace\InkaCrops\Web\GlobalPortal\SecurityApi\obj\Debug\net8.0\SecurityApi.pdb
 C:\Users\jleon\Desktop\Workspace\InkaCrops\Web\GlobalPortal\SecurityApi\obj\Debug\net8.0\SecurityApi.genruntimeconfig.cache
 C:\Users\jleon\Desktop\Workspace\InkaCrops\Web\GlobalPortal\SecurityApi\obj\Debug\net8.0\ref\SecurityApi.dll
+C:\Users\jleon\Desktop\Workspace\InkaCrops\Web\GlobalPortal\SecurityApi\bin\Debug\net8.0\keys\is-signing-key-DA920E10F33986B82575756D713530D1.json
