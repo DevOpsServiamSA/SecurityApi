@@ -1,6 +1,9 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using System.Threading.Tasks;
 using System.Linq;
+using System.Security.Cryptography;
+using System.Text;
+using SecurityApi.Models.ContentBody;
 using SecurityApi.Services;
 
 namespace SecurityApi.Controllers
@@ -17,27 +20,43 @@ namespace SecurityApi.Controllers
         }
 
         [HttpPost]
-        public IActionResult ValidateToken(string token)
+        [Route("auth/token")]
+        public async Task<IActionResult> PostAuth(Authentication auth)
         {
-            if (string.IsNullOrEmpty(token))
+            // Validar que los parametros esten llenos 
+            string message = Validar(auth);
+            
+            if (message.Trim().Length > 0) return Ok(new { message });
+            
+            // Autenticar y generar el token
+            string[] lAuthResult = await _userService.Authenticate(auth);
+            
+            if (lAuthResult.Length == 0)
             {
-                return BadRequest("Token is required");
+                return Ok(new { message = "Intente nuevamente" });
             }
-
-            var isValid = _userService.ValidateToken(token);
-            return Ok(isValid);
+            if (!string.IsNullOrEmpty(lAuthResult[0]))
+            {
+                return Ok(new { message = lAuthResult[0] });
+            }
+            if (string.IsNullOrEmpty(lAuthResult[1]))
+            {
+                return Ok(new { message = "Intente nuevamente" });
+            }
+            return Ok(new { token = lAuthResult[1] });
         }
-
-        [HttpGet("roles")]
-        public IActionResult GetRoles(string token)
+        
+        private string Validar(Authentication auth)
         {
-            if (string.IsNullOrEmpty(token))
+            if (string.IsNullOrEmpty(auth.username))
             {
-                return BadRequest("Token is required");
+                return "Ingrese su nombre usuario";
             }
-
-            var roles = _userService.GetRoles(token);
-            return Ok(string.Join(",", roles));
+            if (string.IsNullOrEmpty(auth.password))
+            {
+                return "Ingrese su contraseña";
+            }
+            return "";
         }
     }
 }

@@ -23,15 +23,13 @@ public class TokenAuth
         {
             Subject = new ClaimsIdentity(new Claim[]
             {
-                    /*[0]*/new Claim(ClaimTypes.SerialNumber, tokenModel.ruc??""),
-                    /*[1]*/new Claim(ClaimTypes.NameIdentifier,  tokenModel.razonsocial??""),
-                    /*[2]*/new Claim(ClaimTypes.Name, tokenModel.username),
-                    /*[3]*/new Claim(ClaimTypes.Actor, tokenModel.nombre),
-                    /*[4]*/new Claim(ClaimTypes.Role, tokenModel.perfil_id.ToString()),
-                    /*[5]*/new Claim("isprov", tokenModel.isproveedor ? "true" : "false"),                    
+                    /*[0]*/new Claim(ClaimTypes.SerialNumber, tokenModel.id_usuario.ToString()??""),
+                    /*[1]*/new Claim(ClaimTypes.NameIdentifier,  tokenModel.username??""),
+                    /*[2]*/new Claim(ClaimTypes.Name, tokenModel.nombre),
+                    /*[4]*/new Claim(ClaimTypes.Role, tokenModel.rol),                    
                     /*[5]*/new Claim("readonly", tokenModel.read_only ? "true" : "false"),
                     /*[6]*/new Claim("hash", Guid.NewGuid().ToString()),
-                    /*[7]*/new Claim("api", "proveedorapi")
+                    /*[7]*/new Claim("api", "security-api")
             }),
             Expires = expire_token,
             SigningCredentials = credentials

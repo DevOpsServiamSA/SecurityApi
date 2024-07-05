@@ -1,7 +1,8 @@
-﻿namespace SecurityApi.Services;
+﻿using SecurityApi.Models.ContentBody;
+
+namespace SecurityApi.Services;
 
 public interface IUserService
 {
-    bool ValidateToken(string token);
-    string[] GetRoles(string token);
+    Task<string[]> Authenticate(Authentication auth);
 }
