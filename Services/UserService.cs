@@ -3,6 +3,7 @@ using System.Text;
 using Microsoft.EntityFrameworkCore;
 using ProveedorApi.Auth;
 using SecurityApi.Models;
+using SecurityApi.Models.ContentResponse;
 using SecurityApi.Models.ContentBody;
 
 namespace SecurityApi.Services;
@@ -24,8 +25,9 @@ public class UserService : IUserService
 
         byte[] _password = (SHA256.Create()).ComputeHash(Encoding.UTF8.GetBytes(auth.password));
             
-        var user = await _context.Usuario.Where(x => x.usuario == auth.username && x.estado == "S").FirstOrDefaultAsync();
-        
+        var user = (await _context.UsuarioResponse.FromSqlInterpolated($"exec GP.get_user_details {auth.username}")
+                        .ToListAsync())
+                        .SingleOrDefault();
         if (user == null)
         {
             lresult[0] = "Usuario no habilitado";
@@ -36,9 +38,7 @@ public class UserService : IUserService
             lresult[0] = "Contraseña incorrecta";
             return lresult;
         }
-
-
-
+        
         lresult[1] = new TokenAuth(_config).Token(
             new TokenModel()
             {
@@ -46,7 +46,7 @@ public class UserService : IUserService
                 username = user.codigo_empleado,
                 nombre = user.nombre,
                 email = "ljosecarlos295@gmail.com",
-                rol = "sistemas",
+                rol = user.rol,
                 read_only = true
             });
            

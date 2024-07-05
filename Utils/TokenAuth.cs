@@ -19,18 +19,24 @@ public class TokenAuth
         DateTime expire_token = UtilityHelper.ExpireToken(_config["ExpiresToken"]);
         var securityKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_config["Jwt:Key"]));
         var credentials = new SigningCredentials(securityKey, SecurityAlgorithms.HmacSha256);
+        var issuer = _config["Jwt:Issuer"];
+        var audience = _config["Jwt:Audience"];
+        var subject = new List<Claim>
+        {
+            /*[0]*/new Claim(ClaimTypes.SerialNumber, tokenModel.id_usuario.ToString()??""),
+            /*[1]*/new Claim(ClaimTypes.NameIdentifier,  tokenModel.username??""),
+            /*[2]*/new Claim(ClaimTypes.Name, tokenModel.nombre),
+            /*[3]*/new Claim("rol", tokenModel.rol),                    
+            /*[4]*/new Claim("readonly", tokenModel.read_only ? "true" : "false"),
+            /*[5]*/new Claim("hash", Guid.NewGuid().ToString()),
+            /*[6]*/new Claim("api", "security-api")
+        };
+        
         var tokenDescriptor = new SecurityTokenDescriptor
         {
-            Subject = new ClaimsIdentity(new Claim[]
-            {
-                    /*[0]*/new Claim(ClaimTypes.SerialNumber, tokenModel.id_usuario.ToString()??""),
-                    /*[1]*/new Claim(ClaimTypes.NameIdentifier,  tokenModel.username??""),
-                    /*[2]*/new Claim(ClaimTypes.Name, tokenModel.nombre),
-                    /*[4]*/new Claim(ClaimTypes.Role, tokenModel.rol),                    
-                    /*[5]*/new Claim("readonly", tokenModel.read_only ? "true" : "false"),
-                    /*[6]*/new Claim("hash", Guid.NewGuid().ToString()),
-                    /*[7]*/new Claim("api", "security-api")
-            }),
+            Issuer = issuer,
+            Audience = audience,
+            Subject = new ClaimsIdentity(subject.ToArray()),
             Expires = expire_token,
             SigningCredentials = credentials
         };

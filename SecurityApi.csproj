@@ -16,10 +16,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Models\ContentResponse\" />
-  </ItemGroup>
-
-  <ItemGroup>
     <_ContentIncludedByDefault Remove="keys\is-signing-key-6CCB5D4D343109115E776FA6EAC34A10.json" />
     <_ContentIncludedByDefault Remove="keys\is-signing-key-DA920E10F33986B82575756D713530D1.json" />
   </ItemGroup>
