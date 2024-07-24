@@ -43,9 +43,11 @@ public class UserService : IUserService
             new TokenModel()
             {
                 id_usuario = user.id_usuario,
-                username = user.codigo_empleado,
+                username = user.usuario,
+                usercode = user.codigo_empleado,
                 nombre = user.nombre,
-                email = "ljosecarlos295@gmail.com",
+                email = user.email,
+                dni = user.dni,
                 rol = user.rol,
                 read_only = true
             });
