@@ -1,6 +1,5 @@
 C:\Users\jleon\Desktop\Workspace\InkaCrops\Web\GlobalPortal\SecurityApi\bin\Release\net8.0\appsettings.Development.json
 C:\Users\jleon\Desktop\Workspace\InkaCrops\Web\GlobalPortal\SecurityApi\bin\Release\net8.0\appsettings.json
-C:\Users\jleon\Desktop\Workspace\InkaCrops\Web\GlobalPortal\SecurityApi\bin\Release\net8.0\global.json
 C:\Users\jleon\Desktop\Workspace\InkaCrops\Web\GlobalPortal\SecurityApi\bin\Release\net8.0\SecurityApi.exe
 C:\Users\jleon\Desktop\Workspace\InkaCrops\Web\GlobalPortal\SecurityApi\bin\Release\net8.0\SecurityApi.deps.json
 C:\Users\jleon\Desktop\Workspace\InkaCrops\Web\GlobalPortal\SecurityApi\bin\Release\net8.0\SecurityApi.runtimeconfig.json
