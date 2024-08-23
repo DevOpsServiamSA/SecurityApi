@@ -54,4 +54,19 @@ public class UserService : IUserService
            
         return lresult;
     }
+
+    public async Task<int> ChangePassAsync(string passactual, string passnew, string usersession)
+    {
+        var usuario = await _context.Usuario.Where(x => x.codigo_empleado == usersession && x.estado == "S").FirstOrDefaultAsync();
+        if (usuario == null) throw new Exception("No existe sus datos");
+
+        byte[] passbyte = (SHA256.Create()).ComputeHash(Encoding.UTF8.GetBytes(passactual));
+        if (Convert.ToBase64String(usuario.clave) != Convert.ToBase64String(passbyte)) throw new Exception("La contraseña actual es incorrecta");
+
+        usuario.clave = (SHA256.Create()).ComputeHash(Encoding.UTF8.GetBytes(passnew));
+        usuario.usuario_actualizacion = usersession;
+        usuario.fecha_actualizacion = DateTime.Now;
+        _context.Usuario.Update(usuario);
+        return await _context.SaveChangesAsync();
+    }
 }
