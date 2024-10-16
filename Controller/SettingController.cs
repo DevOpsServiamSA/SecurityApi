@@ -1,6 +1,17 @@
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Data.SqlClient;
+using Microsoft.Graph.ExternalConnectors;
+using Microsoft.Identity.Client;
+using ProveedorApi.Auth;
 using SecurityApi.Models.ContentBody;
+using SecurityApi.Models.ContentEntity;
 using SecurityApi.Services;
+using SecurityApi.Utils;
+using System.Security.Cryptography;
+using System.Text;
+using static Microsoft.EntityFrameworkCore.DbLoggerCategory.Database;
+using static System.Net.WebRequestMethods;
 
 namespace SecurityApi.Controllers;
 
@@ -8,11 +19,13 @@ namespace SecurityApi.Controllers;
 [Route("[controller]")]
 public class SettingController : ControllerBase
 {
+    
     private readonly IUserService _userService;
+
 
     public SettingController(IUserService userService)
     {
-        _userService = userService;
+        _userService = userService;        
     }
 
     [HttpPost("changepass")]
@@ -47,5 +60,18 @@ public class SettingController : ControllerBase
         }
 
         return NoContent();
+    }
+        
+    private string Validar(Authentication auth)
+    {
+        if (string.IsNullOrEmpty(auth.username))
+        {
+            return "Ingrese su nombre usuario";
+        }
+        if (string.IsNullOrEmpty(auth.password))
+        {
+            return "Ingrese su contraseña";
+        }
+        return "";
     }
 }

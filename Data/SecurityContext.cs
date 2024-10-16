@@ -10,12 +10,14 @@ public class SecurityContext : DbContext {
     #region Usuario
     public DbSet<UsuarioEntity> Usuario => Set<UsuarioEntity>();
     public DbSet<UsuarioResponse> UsuarioResponse => Set<UsuarioResponse>();
+    public DbSet<Empleado> Empleado => Set<Empleado>();
     #endregion
     
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
         #region Table Transaction
         modelBuilder.Entity<UsuarioEntity>().ToTable("USUARIO", "GP").HasKey(x => x.id_usuario);
+        modelBuilder.Entity<Empleado>().ToTable("EMPLEADO", "INKA").HasKey(x => x.identificacion);
         #endregion
         
 

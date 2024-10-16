@@ -11,3 +11,8 @@ public class TokenModel
     public string rol { get; set; }
     public bool read_only { get; set; }
 }
+
+public class TokenModelTemp
+{
+    public string username { get; set; } = null!;
+}

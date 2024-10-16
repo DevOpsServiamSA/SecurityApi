@@ -1,23 +1,23 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\jleon\\Desktop\\Workspace\\InkaCrops\\Web\\GlobalPortal\\SecurityApi\\SecurityApi.csproj": {}
+    "C:\\Users\\mccanto\\Desktop\\WorkSpace\\INKA\\API GATEWAY\\SecurityApi\\SecurityApi.csproj": {}
   },
   "projects": {
-    "C:\\Users\\jleon\\Desktop\\Workspace\\InkaCrops\\Web\\GlobalPortal\\SecurityApi\\SecurityApi.csproj": {
+    "C:\\Users\\mccanto\\Desktop\\WorkSpace\\INKA\\API GATEWAY\\SecurityApi\\SecurityApi.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\jleon\\Desktop\\Workspace\\InkaCrops\\Web\\GlobalPortal\\SecurityApi\\SecurityApi.csproj",
+        "projectUniqueName": "C:\\Users\\mccanto\\Desktop\\WorkSpace\\INKA\\API GATEWAY\\SecurityApi\\SecurityApi.csproj",
         "projectName": "SecurityApi",
-        "projectPath": "C:\\Users\\jleon\\Desktop\\Workspace\\InkaCrops\\Web\\GlobalPortal\\SecurityApi\\SecurityApi.csproj",
-        "packagesPath": "C:\\Users\\jleon\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\jleon\\Desktop\\Workspace\\InkaCrops\\Web\\GlobalPortal\\SecurityApi\\obj\\",
+        "projectPath": "C:\\Users\\mccanto\\Desktop\\WorkSpace\\INKA\\API GATEWAY\\SecurityApi\\SecurityApi.csproj",
+        "packagesPath": "C:\\Users\\mccanto\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\mccanto\\Desktop\\WorkSpace\\INKA\\API GATEWAY\\SecurityApi\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
         ],
         "configFilePaths": [
-          "C:\\Users\\jleon\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\mccanto\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
@@ -25,8 +25,6 @@
           "net8.0"
         ],
         "sources": {
-          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
-          "C:\\Program Files\\dotnet\\library-packs": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
@@ -47,7 +45,7 @@
           "dependencies": {
             "Duende.IdentityServer": {
               "target": "Package",
-              "version": "[7.0.4, )"
+              "version": "[6.3.10, )"
             },
             "Microsoft.AspNetCore.Authentication.JwtBearer": {
               "target": "Package",
@@ -56,6 +54,14 @@
             "Microsoft.EntityFrameworkCore.SqlServer": {
               "target": "Package",
               "version": "[7.0.18, )"
+            },
+            "Microsoft.Graph": {
+              "target": "Package",
+              "version": "[4.54.0, )"
+            },
+            "Microsoft.Identity.Client": {
+              "target": "Package",
+              "version": "[4.64.0, )"
             },
             "Microsoft.IdentityModel.Tokens": {
               "target": "Package",
@@ -89,7 +95,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.304/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.100/PortableRuntimeIdentifierGraph.json"
         }
       }
     }

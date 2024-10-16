@@ -47,4 +47,31 @@ public class TokenAuth
         var token = tokenHandler.CreateToken(tokenDescriptor);
         return tokenHandler.WriteToken(token);
     }
+
+
+    public string TokenTemp(TokenModelTemp tokenModel)
+    {
+        DateTime expire_token = DateTime.UtcNow.AddHours(1);
+        var securityKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_config["Jwt:Key"]));
+        var credentials = new SigningCredentials(securityKey, SecurityAlgorithms.HmacSha256);
+        var issuer = _config["Jwt:Issuer"];
+        var audience = _config["Jwt:Audience"];
+        var subject = new List<Claim>
+        {
+            /*[1]*/new Claim("username",  tokenModel.username??""),
+            new Claim(JwtRegisteredClaimNames.Exp, expire_token.ToUniversalTime().ToString())
+        };
+
+        var tokenDescriptor = new SecurityTokenDescriptor
+        {
+            Issuer = issuer,
+            Audience = audience,
+            Subject = new ClaimsIdentity(subject.ToArray()),
+            Expires = expire_token,
+            SigningCredentials = credentials
+        };
+        var tokenHandler = new JwtSecurityTokenHandler();
+        var token = tokenHandler.CreateToken(tokenDescriptor);
+        return tokenHandler.WriteToken(token);
+    }
 }

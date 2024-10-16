@@ -1,1 +1,13 @@
-/SecurityApi.csproj
+# Ignorar directorios de compilación
+bin/
+obj/
+PublishProfiles/
+.vs/
+.idea/
+
+# Ignorar archivos de configuración específicos
+*.log
+.env
+
+# Ignorar otros archivos o directorios
+temp/

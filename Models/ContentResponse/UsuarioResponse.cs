@@ -11,4 +11,7 @@ public class UsuarioResponse
     public string dni { get; set; }
     public byte[] clave { get; set; }
     public string? estado { get; set; }
+   /* public string? token_reset { get; set; }
+    public DateTime? token_reset_expire { get; set; }
+    public DateTime? token_reset_request { get; set; }*/
 }

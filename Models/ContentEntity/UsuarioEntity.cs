@@ -1,3 +1,5 @@
+using System.ComponentModel.DataAnnotations.Schema;
+
 namespace SecurityApi.Models.ContentEntity;
 
 public class UsuarioEntity
@@ -12,4 +14,12 @@ public class UsuarioEntity
     public DateTime? fecha_creacion { get; set; }
     public string? usuario_actualizacion { get; set; }
     public DateTime? fecha_actualizacion { get; set; }
+    public string? token_reset { get; set; }
+    public DateTime? token_reset_expire { get; set; }
+    public DateTime? token_reset_request { get; set; }
+}
+
+public class Empleado
+{
+    public string? identificacion { get; set; }
 }
